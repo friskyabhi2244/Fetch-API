@@ -1,0 +1,22 @@
+ <script>
+        let pro = new Promise(function (resolve, reject) {
+            fetch("https://dummyjson.com/product").then(x => x.text()).then(y => showData(y));
+
+            function showData(y) {
+                let data = JSON.parse(y)
+                let products=data.products;
+
+                if (products == null || products == undefined) {
+                    reject('Error')
+                } else {
+                    resolve(products)
+                }
+            }
+        });
+
+        pro.then(function (products) {
+            console.log(products)
+        }, function (error) {
+            console.log(error)
+        })
+    </script>
